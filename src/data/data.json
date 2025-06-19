@@ -1,0 +1,148 @@
+{
+  "personal": {
+    "name": "Sayyed Arslaan",
+    "title": "Full-Stack Web Developer",
+    "headline": "I Build Stunning Websites That Convert",
+    "subtitle": "Hi, I'm Sayyed Arslaan, a full-stack web developer passionate about creating exceptional digital experiences.",
+    "bio": "With over 5 years of experience in web development, I specialize in creating modern, responsive websites that not only look stunning but also drive results. My expertise spans from front-end technologies like React and Vue.js to back-end solutions with Node.js and Python.",
+    "email": "sayyed.arslaan@example.com",
+    "phone": "+1 (555) 123-4567",
+    "profileImage": "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&dpr=2",
+    "resume": "/resume.pdf"
+  },
+  "skills": [
+    "React.js", "Vue.js", "Node.js", "Python", "TypeScript", "Next.js",
+    "MongoDB", "PostgreSQL", "AWS", "Docker", "GraphQL", "Tailwind CSS"
+  ],
+  "social": {
+    "github": "https://github.com/sayyedarslaan",
+    "linkedin": "https://linkedin.com/in/sayyedarslaan",
+    "twitter": "https://twitter.com/sayyedarslaan",
+    "instagram": "https://instagram.com/sayyedarslaan"
+  },
+  "services": [
+    {
+      "id": 1,
+      "title": "Web Design",
+      "description": "Creating beautiful, user-friendly designs that capture your brand essence.",
+      "icon": "Palette",
+      "features": ["Responsive Design", "UI/UX Research", "Prototyping", "Brand Identity"]
+    },
+    {
+      "id": 2,
+      "title": "Web Development",
+      "description": "Building fast, scalable websites with modern technologies and best practices.",
+      "icon": "Code",
+      "features": ["React/Vue.js", "Node.js", "Database Design", "API Integration"]
+    },
+    {
+      "id": 3,
+      "title": "SEO Optimization",
+      "description": "Improving your website's visibility and ranking in search engines.",
+      "icon": "Search",
+      "features": ["Technical SEO", "Content Strategy", "Performance Optimization", "Analytics Setup"]
+    },
+    {
+      "id": 4,
+      "title": "E-Commerce Setup",
+      "description": "Complete e-commerce solutions from design to payment integration.",
+      "icon": "ShoppingCart",
+      "features": ["Shopify/WooCommerce", "Payment Gateways", "Inventory Management", "Order Processing"]
+    },
+    {
+      "id": 5,
+      "title": "Custom Web Apps",
+      "description": "Tailored web applications to solve your specific business needs.",
+      "icon": "Smartphone",
+      "features": ["Custom Development", "Database Architecture", "Admin Panels", "Third-party Integrations"]
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "E-Commerce Platform",
+      "description": "A full-featured e-commerce platform with React, Node.js, and Stripe integration.",
+      "image": "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "category": "Web Development",
+      "technologies": ["React", "Node.js", "MongoDB", "Stripe"],
+      "link": "https://example.com",
+      "github": "https://github.com/example"
+    },
+    {
+      "id": 2,
+      "title": "Portfolio Website",
+      "description": "A stunning portfolio website for a creative agency with smooth animations.",
+      "image": "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "category": "Web Design",
+      "technologies": ["React", "Tailwind CSS", "Framer Motion"],
+      "link": "https://example.com",
+      "github": "https://github.com/example"
+    },
+    {
+      "id": 3,
+      "title": "Task Management App",
+      "description": "A collaborative task management application with real-time updates.",
+      "image": "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "category": "Web App",
+      "technologies": ["Vue.js", "Firebase", "Vuex"],
+      "link": "https://example.com",
+      "github": "https://github.com/example"
+    },
+    {
+      "id": 4,
+      "title": "Restaurant Website",
+      "description": "Modern restaurant website with online ordering and reservation system.",
+      "image": "https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "category": "Web Development",
+      "technologies": ["Next.js", "PostgreSQL", "Tailwind CSS"],
+      "link": "https://example.com",
+      "github": "https://github.com/example"
+    },
+    {
+      "id": 5,
+      "title": "Fitness Tracker",
+      "description": "A comprehensive fitness tracking application with workout plans and progress tracking.",
+      "image": "https://images.pexels.com/photos/416809/pexels-photo-416809.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "category": "Web App",
+      "technologies": ["React", "Python", "Flask", "Chart.js"],
+      "link": "https://example.com",
+      "github": "https://github.com/example"
+    },
+    {
+      "id": 6,
+      "title": "Digital Marketing Agency",
+      "description": "A professional website for a digital marketing agency with service showcases.",
+      "image": "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "category": "Web Design",
+      "technologies": ["Vue.js", "Nuxt.js", "SCSS"],
+      "link": "https://example.com",
+      "github": "https://github.com/example"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Sarah Johnson",
+      "position": "CEO, TechStart Inc.",
+      "content": "Sayyed delivered an exceptional website that exceeded our expectations. The attention to detail and technical expertise is outstanding.",
+      "rating": 5,
+      "image": "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=150"
+    },
+    {
+      "id": 2,
+      "name": "Michael Chen",
+      "position": "Founder, Digital Solutions",
+      "content": "Working with Sayyed was a pleasure. He understood our vision and transformed it into a beautiful, functional website.",
+      "rating": 5,
+      "image": "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=150"
+    },
+    {
+      "id": 3,
+      "name": "Emily Rodriguez",
+      "position": "Marketing Director, CreativeAgency",
+      "content": "The website Sayyed created for us has significantly improved our online presence and client engagement. Highly recommended!",
+      "rating": 5,
+      "image": "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150"
+    }
+  ]
+}
