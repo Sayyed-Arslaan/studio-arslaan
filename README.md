@@ -1,4 +1,4 @@
-# Modern Portfolio Website
+# Modern Portfolio Website  By Sayyed Arslaan 
 
 A stunning, production-ready dark-themed portfolio website built with React, TypeScript, and Tailwind CSS.
 
