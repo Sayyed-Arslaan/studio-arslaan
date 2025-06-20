@@ -8,6 +8,7 @@ import { Testimonials } from './components/Testimonials';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { ParticleBackground } from './components/ParticleBackground';
+import portfolioData from './data/data.json';
 
 interface PortfolioData {
   personal: {
@@ -59,17 +60,14 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Load data from JSON file
-    fetch('/src/data/data.json')
-      .then(response => response.json())
-      .then(data => {
-        setData(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error loading data:', error);
-        setLoading(false);
-      });
+    // Use imported data instead of fetch
+    try {
+      setData(portfolioData as PortfolioData);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error loading data:', error);
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {
