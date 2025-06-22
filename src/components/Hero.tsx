@@ -98,7 +98,7 @@ export const Hero: React.FC<HeroProps> = ({ data }) => {
                 <Linkedin size={24} />
               </a>
               <a
-                href={`https://mail.google.com/mail/?view=cm&to=${data.social.email}`}
+                href={`https://mail.google.com/mail/?view=cm&to=arslaan.developer@gmail.com${data.social.email}`}
                 className="text-gray-400 hover:text-cyan-400 transition-colors duration-300 p-3 rounded-full hover:bg-white/10"
               >
                 <Mail size={24} />
