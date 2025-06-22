@@ -17,6 +17,10 @@ interface ContactProps {
 }
 
 export const Contact: React.FC<ContactProps> = ({ data }) => {
+  const openGmail = () => {
+    window.open('https://mail.google.com/mail/?view=cm&to=arslaan.developer@gmail.com', '_blank');
+  };
+
   return (
     <section id="contact" className="py-20 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -39,12 +43,12 @@ export const Contact: React.FC<ContactProps> = ({ data }) => {
                   <Mail className="text-white" size={24} />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3">Email</h3>
-                <a 
-                  href={`mailto:${data.email}`}
-                  className="text-gray-300 hover:text-cyan-400 transition-colors duration-300"
+                <button 
+                  onClick={openGmail}
+                  className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 cursor-pointer"
                 >
                   {data.email}
-                </a>
+                </button>
               </GlassCard>
             </AnimatedSection>
             

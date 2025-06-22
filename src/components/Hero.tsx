@@ -26,6 +26,10 @@ export const Hero: React.FC<HeroProps> = ({ data }) => {
     }
   };
 
+  const openGmail = () => {
+    window.open('https://mail.google.com/mail/?view=cm&to=arslaan.developer@gmail.com', '_blank');
+  };
+
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Parallax Background Elements */}
@@ -97,12 +101,12 @@ export const Hero: React.FC<HeroProps> = ({ data }) => {
               >
                 <Linkedin size={24} />
               </a>
-              <a
-                href={`https://mail.google.com/mail/?view=cm&to=arslaan.developer@gmail.com${data.social.email}`}
+              <button
+                onClick={openGmail}
                 className="text-gray-400 hover:text-cyan-400 transition-colors duration-300 p-3 rounded-full hover:bg-white/10"
               >
                 <Mail size={24} />
-              </a>
+              </button>
             </div>
           </AnimatedSection>
         </div>
