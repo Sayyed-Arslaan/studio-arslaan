@@ -49,7 +49,7 @@ export const About: React.FC<AboutProps> = ({ data, skills }) => {
                   <div className="w-12 h-12 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-lg flex items-center justify-center mx-auto mb-2">
                     <User className="text-white" size={20} />
                   </div>
-                  <p className="text-sm text-gray-300">5+ Years</p>
+                  <p className="text-sm text-gray-300">2+ Years</p>
                   <p className="text-xs text-gray-400">Experience</p>
                 </div>
                 
