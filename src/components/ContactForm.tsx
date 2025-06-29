@@ -214,7 +214,7 @@ export const ContactForm: React.FC = () => {
           {/* Contact Form */}
           <div className="lg:col-span-2">
             <AnimatedSection animation="fadeInRight" delay={200}>
-              <GlassCard className="p-8 md:p-12">
+              <GlassCard className="p-8 md:p-12 relative z-10">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Status Message */}
                   {status.type !== 'idle' && (
@@ -312,90 +312,106 @@ export const ContactForm: React.FC = () => {
                   <div>
                     <h3 className="text-xl font-semibold text-white mb-4">Project Details</h3>
                     <div className="space-y-6">
-                      <div>
+                      <div className="relative z-50">
                         <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
                           Project Type *
                         </label>
-                        <select
-                          id="subject"
-                          name="subject"
-                          value={formData.subject}
-                          onChange={handleInputChange}
-                          required
-                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-cyan-400 focus:bg-white/10 transition-all duration-300"
-                        >
-                          <option value="">Select project type</option>
-                          <option value="Business Website">Business Website</option>
-                          <option value="E-Commerce Store">E-Commerce Store</option>
-                          <option value="Portfolio Website">Portfolio Website</option>
-                          <option value="Blog Website">Blog Website</option>
-                          <option value="Landing Page">Landing Page</option>
-                          <option value="Web Application">Web Application</option>
-                          <option value="Mobile App">Mobile App</option>
-                          <option value="Custom Software">Custom Software</option>
-                          <option value="API Development">API Development</option>
-                          <option value="Database Design">Database Design</option>
-                          <option value="Website Redesign">Website Redesign</option>
-                          <option value="Website Maintenance">Website Maintenance</option>
-                          <option value="SEO Optimization">SEO Optimization</option>
-                          <option value="Performance Optimization">Performance Optimization</option>
-                          <option value="Security Audit">Security Audit</option>
-                          <option value="Third-party Integration">Third-party Integration</option>
-                          <option value="CMS Development">CMS Development</option>
-                          <option value="WordPress Development">WordPress Development</option>
-                          <option value="Shopify Development">Shopify Development</option>
-                          <option value="React Development">React Development</option>
-                          <option value="Vue.js Development">Vue.js Development</option>
-                          <option value="Node.js Development">Node.js Development</option>
-                          <option value="Python Development">Python Development</option>
-                          <option value="Full-Stack Development">Full-Stack Development</option>
-                          <option value="Frontend Development">Frontend Development</option>
-                          <option value="Backend Development">Backend Development</option>
-                          <option value="UI/UX Design">UI/UX Design</option>
-                          <option value="Graphic Design">Graphic Design</option>
-                          <option value="Logo Design">Logo Design</option>
-                          <option value="Branding">Branding</option>
-                          <option value="Digital Marketing">Digital Marketing</option>
-                          <option value="Social Media Management">Social Media Management</option>
-                          <option value="Content Writing">Content Writing</option>
-                          <option value="Technical Writing">Technical Writing</option>
-                          <option value="Code Review">Code Review</option>
-                          <option value="Technical Consultation">Technical Consultation</option>
-                          <option value="Training & Mentoring">Training & Mentoring</option>
-                          <option value="Project Management">Project Management</option>
-                          <option value="Quality Assurance">Quality Assurance</option>
-                          <option value="Testing Services">Testing Services</option>
-                          <option value="DevOps Services">DevOps Services</option>
-                          <option value="Cloud Services">Cloud Services</option>
-                          <option value="Hosting Setup">Hosting Setup</option>
-                          <option value="Domain Management">Domain Management</option>
-                          <option value="Email Setup">Email Setup</option>
-                          <option value="Analytics Setup">Analytics Setup</option>
-                          <option value="Other">Other</option>
-                        </select>
+                        <div className="relative">
+                          <select
+                            id="subject"
+                            name="subject"
+                            value={formData.subject}
+                            onChange={handleInputChange}
+                            required
+                            className="w-full px-4 py-3 bg-gray-800/90 backdrop-blur-sm border border-white/10 rounded-lg text-white focus:outline-none focus:border-cyan-400 focus:bg-gray-800 transition-all duration-300 appearance-none cursor-pointer relative z-50"
+                            style={{ 
+                              backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e")`,
+                              backgroundPosition: 'right 0.5rem center',
+                              backgroundRepeat: 'no-repeat',
+                              backgroundSize: '1.5em 1.5em'
+                            }}
+                          >
+                            <option value="" className="bg-gray-800 text-gray-300">Select project type</option>
+                            <option value="Business Website" className="bg-gray-800 text-white">Business Website</option>
+                            <option value="E-Commerce Store" className="bg-gray-800 text-white">E-Commerce Store</option>
+                            <option value="Portfolio Website" className="bg-gray-800 text-white">Portfolio Website</option>
+                            <option value="Blog Website" className="bg-gray-800 text-white">Blog Website</option>
+                            <option value="Landing Page" className="bg-gray-800 text-white">Landing Page</option>
+                            <option value="Web Application" className="bg-gray-800 text-white">Web Application</option>
+                            <option value="Mobile App" className="bg-gray-800 text-white">Mobile App</option>
+                            <option value="Custom Software" className="bg-gray-800 text-white">Custom Software</option>
+                            <option value="API Development" className="bg-gray-800 text-white">API Development</option>
+                            <option value="Database Design" className="bg-gray-800 text-white">Database Design</option>
+                            <option value="Website Redesign" className="bg-gray-800 text-white">Website Redesign</option>
+                            <option value="Website Maintenance" className="bg-gray-800 text-white">Website Maintenance</option>
+                            <option value="SEO Optimization" className="bg-gray-800 text-white">SEO Optimization</option>
+                            <option value="Performance Optimization" className="bg-gray-800 text-white">Performance Optimization</option>
+                            <option value="Security Audit" className="bg-gray-800 text-white">Security Audit</option>
+                            <option value="Third-party Integration" className="bg-gray-800 text-white">Third-party Integration</option>
+                            <option value="CMS Development" className="bg-gray-800 text-white">CMS Development</option>
+                            <option value="WordPress Development" className="bg-gray-800 text-white">WordPress Development</option>
+                            <option value="Shopify Development" className="bg-gray-800 text-white">Shopify Development</option>
+                            <option value="React Development" className="bg-gray-800 text-white">React Development</option>
+                            <option value="Vue.js Development" className="bg-gray-800 text-white">Vue.js Development</option>
+                            <option value="Node.js Development" className="bg-gray-800 text-white">Node.js Development</option>
+                            <option value="Python Development" className="bg-gray-800 text-white">Python Development</option>
+                            <option value="Full-Stack Development" className="bg-gray-800 text-white">Full-Stack Development</option>
+                            <option value="Frontend Development" className="bg-gray-800 text-white">Frontend Development</option>
+                            <option value="Backend Development" className="bg-gray-800 text-white">Backend Development</option>
+                            <option value="UI/UX Design" className="bg-gray-800 text-white">UI/UX Design</option>
+                            <option value="Graphic Design" className="bg-gray-800 text-white">Graphic Design</option>
+                            <option value="Logo Design" className="bg-gray-800 text-white">Logo Design</option>
+                            <option value="Branding" className="bg-gray-800 text-white">Branding</option>
+                            <option value="Digital Marketing" className="bg-gray-800 text-white">Digital Marketing</option>
+                            <option value="Social Media Management" className="bg-gray-800 text-white">Social Media Management</option>
+                            <option value="Content Writing" className="bg-gray-800 text-white">Content Writing</option>
+                            <option value="Technical Writing" className="bg-gray-800 text-white">Technical Writing</option>
+                            <option value="Code Review" className="bg-gray-800 text-white">Code Review</option>
+                            <option value="Technical Consultation" className="bg-gray-800 text-white">Technical Consultation</option>
+                            <option value="Training & Mentoring" className="bg-gray-800 text-white">Training & Mentoring</option>
+                            <option value="Project Management" className="bg-gray-800 text-white">Project Management</option>
+                            <option value="Quality Assurance" className="bg-gray-800 text-white">Quality Assurance</option>
+                            <option value="Testing Services" className="bg-gray-800 text-white">Testing Services</option>
+                            <option value="DevOps Services" className="bg-gray-800 text-white">DevOps Services</option>
+                            <option value="Cloud Services" className="bg-gray-800 text-white">Cloud Services</option>
+                            <option value="Hosting Setup" className="bg-gray-800 text-white">Hosting Setup</option>
+                            <option value="Domain Management" className="bg-gray-800 text-white">Domain Management</option>
+                            <option value="Email Setup" className="bg-gray-800 text-white">Email Setup</option>
+                            <option value="Analytics Setup" className="bg-gray-800 text-white">Analytics Setup</option>
+                            <option value="Other" className="bg-gray-800 text-white">Other</option>
+                          </select>
+                        </div>
                       </div>
 
-                      <div>
+                      <div className="relative z-40">
                         <label htmlFor="budget" className="block text-sm font-medium text-gray-300 mb-2">
                           Budget Range
                         </label>
-                        <select
-                          id="budget"
-                          name="budget"
-                          value={formData.budget}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-cyan-400 focus:bg-white/10 transition-all duration-300"
-                        >
-                          <option value="">Select budget range</option>
-                          <option value="Under $1,000">Under $1,000</option>
-                          <option value="$1,000 - $5,000">$1,000 - $5,000</option>
-                          <option value="$5,000 - $10,000">$5,000 - $10,000</option>
-                          <option value="$10,000 - $25,000">$10,000 - $25,000</option>
-                          <option value="$25,000 - $50,000">$25,000 - $50,000</option>
-                          <option value="$50,000 - $100,000">$50,000 - $100,000</option>
-                          <option value="$100,000+">$100,000+</option>
-                          <option value="Discuss">Let's Discuss</option>
-                        </select>
+                        <div className="relative">
+                          <select
+                            id="budget"
+                            name="budget"
+                            value={formData.budget}
+                            onChange={handleInputChange}
+                            className="w-full px-4 py-3 bg-gray-800/90 backdrop-blur-sm border border-white/10 rounded-lg text-white focus:outline-none focus:border-cyan-400 focus:bg-gray-800 transition-all duration-300 appearance-none cursor-pointer relative z-40"
+                            style={{ 
+                              backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e")`,
+                              backgroundPosition: 'right 0.5rem center',
+                              backgroundRepeat: 'no-repeat',
+                              backgroundSize: '1.5em 1.5em'
+                            }}
+                          >
+                            <option value="" className="bg-gray-800 text-gray-300">Select budget range</option>
+                            <option value="Under $1,000" className="bg-gray-800 text-white">Under $1,000</option>
+                            <option value="$1,000 - $5,000" className="bg-gray-800 text-white">$1,000 - $5,000</option>
+                            <option value="$5,000 - $10,000" className="bg-gray-800 text-white">$5,000 - $10,000</option>
+                            <option value="$10,000 - $25,000" className="bg-gray-800 text-white">$10,000 - $25,000</option>
+                            <option value="$25,000 - $50,000" className="bg-gray-800 text-white">$25,000 - $50,000</option>
+                            <option value="$50,000 - $100,000" className="bg-gray-800 text-white">$50,000 - $100,000</option>
+                            <option value="$100,000+" className="bg-gray-800 text-white">$100,000+</option>
+                            <option value="Discuss" className="bg-gray-800 text-white">Let's Discuss</option>
+                          </select>
+                        </div>
                       </div>
 
                       <div>
