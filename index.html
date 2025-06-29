@@ -17,12 +17,84 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Sayyed Arslaan - Full-Stack Web Developer" />
     <meta name="twitter:description" content="Creating stunning websites that convert. Specialized in modern web development technologies." />
+    
+    <!-- Performance optimizations -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.pexels.com">
+    <link rel="preconnect" href="https://ik.imagekit.io">
+    
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//images.pexels.com">
+    <link rel="dns-prefetch" href="//ik.imagekit.io">
+    
+    <!-- Critical CSS inlined for faster loading -->
+    <style>
+      body { 
+        font-family: system-ui, -apple-system, sans-serif; 
+        background-color: #111827; 
+        color: #ffffff; 
+        margin: 0; 
+        overflow-x: hidden;
+      }
+      .loading-screen { 
+        position: fixed; 
+        inset: 0; 
+        background: #111827; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        z-index: 9999; 
+      }
+      .spinner { 
+        width: 40px; 
+        height: 40px; 
+        border: 3px solid #374151; 
+        border-top: 3px solid #00d4ff; 
+        border-radius: 50%; 
+        animation: spin 1s linear infinite; 
+      }
+      @keyframes spin { 
+        0% { transform: rotate(0deg); } 
+        100% { transform: rotate(360deg); } 
+      }
+    </style>
+    
     <title>Sayyed Arslaan - Full-Stack Web Developer</title>
   </head>
   <body>
+    <!-- Loading screen -->
+    <div id="loading-screen" class="loading-screen">
+      <div class="spinner"></div>
+    </div>
+    
     <div id="root"></div>
+    
+    <script>
+      // Hide loading screen when page is loaded
+      window.addEventListener('load', function() {
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) {
+          loadingScreen.style.opacity = '0';
+          setTimeout(() => loadingScreen.remove(), 300);
+        }
+      });
+      
+      // Service Worker registration for caching
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+              console.log('SW registered: ', registration);
+            })
+            .catch(function(registrationError) {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+    
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

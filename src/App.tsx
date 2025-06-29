@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
 import { Hero } from './components/Hero';
@@ -8,9 +8,11 @@ import { About } from './components/About';
 import { Testimonials } from './components/Testimonials';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
-import { ParticleBackground } from './components/ParticleBackground';
-import { ContactPage } from './pages/Contact';
+import { OptimizedParticleBackground } from './components/OptimizedParticleBackground';
 import portfolioData from './data/data.json';
+
+// Lazy load the contact page
+const ContactPage = lazy(() => import('./pages/Contact').then(module => ({ default: module.ContactPage })));
 
 interface PortfolioData {
   personal: {
@@ -57,7 +59,16 @@ interface PortfolioData {
   }>;
 }
 
-const HomePage: React.FC<{ data: PortfolioData }> = ({ data }) => (
+const LoadingSpinner = () => (
+  <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+    <div className="text-center">
+      <div className="w-16 h-16 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+      <p className="text-white text-lg">Loading...</p>
+    </div>
+  </div>
+);
+
+const HomePage: React.FC<{ data: PortfolioData }> = React.memo(({ data }) => (
   <>
     <Hero 
       data={{
@@ -95,7 +106,9 @@ const HomePage: React.FC<{ data: PortfolioData }> = ({ data }) => (
       }}
     />
   </>
-);
+));
+
+HomePage.displayName = 'HomePage';
 
 function App() {
   const [data, setData] = useState<PortfolioData | null>(null);
@@ -120,17 +133,22 @@ function App() {
     if (data?.personal?.name) {
       document.title = `${data.personal.name} - ${data.personal.title}`;
     }
+
+    // Preload critical resources
+    const preloadLink = document.createElement('link');
+    preloadLink.rel = 'preload';
+    preloadLink.as = 'font';
+    preloadLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap';
+    preloadLink.crossOrigin = 'anonymous';
+    document.head.appendChild(preloadLink);
+
+    return () => {
+      document.head.removeChild(preloadLink);
+    };
   }, [data]);
 
   if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-white text-lg">Loading...</p>
-        </div>
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   if (!data) {
@@ -146,11 +164,15 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
-        {/* Particle Background */}
-        <ParticleBackground />
+        {/* Optimized Particle Background */}
+        <OptimizedParticleBackground />
         
         <Routes>
-          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/contact" element={
+            <Suspense fallback={<LoadingSpinner />}>
+              <ContactPage />
+            </Suspense>
+          } />
           <Route path="/" element={
             <>
               {/* Navigation */}

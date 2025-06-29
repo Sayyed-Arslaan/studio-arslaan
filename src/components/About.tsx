@@ -2,6 +2,7 @@ import React from 'react';
 import { User, Award, Coffee, Heart } from 'lucide-react';
 import { AnimatedSection } from './AnimatedSection';
 import { GlassCard } from './GlassCard';
+import { LazyImage } from './LazyImage';
 
 interface AboutProps {
   data: {
@@ -32,10 +33,10 @@ export const About: React.FC<AboutProps> = ({ data, skills }) => {
           <AnimatedSection animation="fadeInLeft">
             <GlassCard className="p-8 text-center lg:text-left">
               <div className="mb-8">
-                <img
+                <LazyImage
                   src={data.profileImage}
                   alt={data.name}
-                  className="w-48 h-48 rounded-full mx-auto lg:mx-0 object-cover border-4 border-gradient-to-r from-cyan-400 to-purple-500 shadow-2xl"
+                  className="w-48 h-48 rounded-full mx-auto lg:mx-0 border-4 border-gradient-to-r from-cyan-400 to-purple-500 shadow-2xl"
                 />
               </div>
               

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
 import { AnimatedSection } from './AnimatedSection';
 import { GlassCard } from './GlassCard';
+import { LazyImage } from './LazyImage';
 
 interface Testimonial {
   id: number;
@@ -31,7 +32,7 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials }) => {
     );
   };
 
-  const currentTestimonial = testimonials[currentIndex];
+  const currentTestimonial = useMemo(() => testimonials[currentIndex], [testimonials, currentIndex]);
 
   return (
     <section id="testimonials" className="py-20 relative">
@@ -71,10 +72,10 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials }) => {
                 </p>
                 
                 <div className="flex items-center justify-center">
-                  <img
+                  <LazyImage
                     src={currentTestimonial.image}
                     alt={currentTestimonial.name}
-                    className="w-16 h-16 rounded-full object-cover mr-4 border-2 border-cyan-400/30"
+                    className="w-16 h-16 rounded-full mr-4 border-2 border-cyan-400/30"
                   />
                   <div className="text-left">
                     <h4 className="text-white font-semibold">{currentTestimonial.name}</h4>
@@ -88,6 +89,7 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials }) => {
                 <button
                   onClick={prevTestimonial}
                   className="p-2 text-gray-400 hover:text-cyan-400 hover:bg-white/10 rounded-full transition-all duration-300"
+                  aria-label="Previous testimonial"
                 >
                   <ChevronLeft size={24} />
                 </button>
@@ -102,6 +104,7 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials }) => {
                           ? 'bg-gradient-to-r from-cyan-400 to-purple-500'
                           : 'bg-gray-600 hover:bg-gray-500'
                       }`}
+                      aria-label={`Go to testimonial ${index + 1}`}
                     />
                   ))}
                 </div>
@@ -109,6 +112,7 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials }) => {
                 <button
                   onClick={nextTestimonial}
                   className="p-2 text-gray-400 hover:text-cyan-400 hover:bg-white/10 rounded-full transition-all duration-300"
+                  aria-label="Next testimonial"
                 >
                   <ChevronRight size={24} />
                 </button>

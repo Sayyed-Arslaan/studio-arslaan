@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { ExternalLink, Github, Filter } from 'lucide-react';
 import { AnimatedSection } from './AnimatedSection';
 import { GlassCard } from './GlassCard';
+import { LazyImage } from './LazyImage';
 
 interface Project {
   id: number;
@@ -21,11 +22,17 @@ interface PortfolioProps {
 export const Portfolio: React.FC<PortfolioProps> = ({ projects }) => {
   const [activeFilter, setActiveFilter] = useState('All');
   
-  const categories = ['All', ...Array.from(new Set(projects.map(p => p.category)))];
+  const categories = useMemo(() => 
+    ['All', ...Array.from(new Set(projects.map(p => p.category)))], 
+    [projects]
+  );
   
-  const filteredProjects = activeFilter === 'All' 
-    ? projects 
-    : projects.filter(project => project.category === activeFilter);
+  const filteredProjects = useMemo(() => 
+    activeFilter === 'All' 
+      ? projects 
+      : projects.filter(project => project.category === activeFilter),
+    [projects, activeFilter]
+  );
 
   return (
     <section id="portfolio" className="py-20 relative">
@@ -71,10 +78,10 @@ export const Portfolio: React.FC<PortfolioProps> = ({ projects }) => {
             >
               <GlassCard className="overflow-hidden group">
                 <div className="relative">
-                  <img
+                  <LazyImage
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-48 group-hover:scale-110 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
                     <div className="flex gap-3">
@@ -83,6 +90,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ projects }) => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors duration-300"
+                        aria-label={`View ${project.title} live`}
                       >
                         <ExternalLink size={16} className="text-white" />
                       </a>
@@ -91,6 +99,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ projects }) => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors duration-300"
+                        aria-label={`View ${project.title} source code`}
                       >
                         <Github size={16} className="text-white" />
                       </a>
