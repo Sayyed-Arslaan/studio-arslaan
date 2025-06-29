@@ -37,7 +37,7 @@ export const ContactForm: React.FC = () => {
   });
 
   // Replace this URL with your Google Apps Script Web App URL
-  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx0r8L83Y5mwPc978IBfVzOod1IiZy0k8b7lHDgfsig6teJIwwdIaiiiWIkHI7lbKXO1Q/exec';
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
