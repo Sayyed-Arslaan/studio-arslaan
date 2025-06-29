@@ -7,12 +7,11 @@ import { GlassCard } from './GlassCard';
 interface FormData {
   name: string;
   email: string;
+  phone: string;
   subject: string;
   message: string;
-  phone?: string;
   company?: string;
   budget?: string;
-  timeline?: string;
 }
 
 interface FormStatus {
@@ -25,12 +24,11 @@ export const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
+    phone: '',
     subject: '',
     message: '',
-    phone: '',
     company: '',
-    budget: '',
-    timeline: ''
+    budget: ''
   });
 
   const [status, setStatus] = useState<FormStatus>({
@@ -53,10 +51,10 @@ export const ContactForm: React.FC = () => {
     e.preventDefault();
     
     // Validate required fields
-    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+    if (!formData.name || !formData.email || !formData.phone || !formData.subject || !formData.message) {
       setStatus({
         type: 'error',
-        message: 'Please fill in all required fields.'
+        message: 'Please fill in all required fields including phone number.'
       });
       return;
     }
@@ -67,6 +65,16 @@ export const ContactForm: React.FC = () => {
       setStatus({
         type: 'error',
         message: 'Please enter a valid email address.'
+      });
+      return;
+    }
+
+    // Validate phone number (basic validation)
+    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+    if (!phoneRegex.test(formData.phone.replace(/[\s\-\(\)]/g, ''))) {
+      setStatus({
+        type: 'error',
+        message: 'Please enter a valid phone number.'
       });
       return;
     }
@@ -99,12 +107,11 @@ export const ContactForm: React.FC = () => {
         setFormData({
           name: '',
           email: '',
+          phone: '',
           subject: '',
           message: '',
-          phone: '',
           company: '',
-          budget: '',
-          timeline: ''
+          budget: ''
         });
       } else {
         throw new Error('Failed to send message');
@@ -270,7 +277,7 @@ export const ContactForm: React.FC = () => {
 
                       <div>
                         <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
-                          Phone Number
+                          Phone Number *
                         </label>
                         <input
                           type="tel"
@@ -278,6 +285,7 @@ export const ContactForm: React.FC = () => {
                           name="phone"
                           value={formData.phone}
                           onChange={handleInputChange}
+                          required
                           className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400 focus:bg-white/10 transition-all duration-300"
                           placeholder="Enter your phone number"
                         />
@@ -317,59 +325,77 @@ export const ContactForm: React.FC = () => {
                           className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-cyan-400 focus:bg-white/10 transition-all duration-300"
                         >
                           <option value="">Select project type</option>
-                          <option value="Web Design">Web Design</option>
-                          <option value="Web Development">Web Development</option>
-                          <option value="E-Commerce">E-Commerce Development</option>
-                          <option value="Custom Web App">Custom Web Application</option>
-                          <option value="SEO Optimization">SEO Optimization</option>
+                          <option value="Business Website">Business Website</option>
+                          <option value="E-Commerce Store">E-Commerce Store</option>
+                          <option value="Portfolio Website">Portfolio Website</option>
+                          <option value="Blog Website">Blog Website</option>
+                          <option value="Landing Page">Landing Page</option>
+                          <option value="Web Application">Web Application</option>
+                          <option value="Mobile App">Mobile App</option>
+                          <option value="Custom Software">Custom Software</option>
+                          <option value="API Development">API Development</option>
+                          <option value="Database Design">Database Design</option>
                           <option value="Website Redesign">Website Redesign</option>
-                          <option value="Consultation">Consultation</option>
+                          <option value="Website Maintenance">Website Maintenance</option>
+                          <option value="SEO Optimization">SEO Optimization</option>
+                          <option value="Performance Optimization">Performance Optimization</option>
+                          <option value="Security Audit">Security Audit</option>
+                          <option value="Third-party Integration">Third-party Integration</option>
+                          <option value="CMS Development">CMS Development</option>
+                          <option value="WordPress Development">WordPress Development</option>
+                          <option value="Shopify Development">Shopify Development</option>
+                          <option value="React Development">React Development</option>
+                          <option value="Vue.js Development">Vue.js Development</option>
+                          <option value="Node.js Development">Node.js Development</option>
+                          <option value="Python Development">Python Development</option>
+                          <option value="Full-Stack Development">Full-Stack Development</option>
+                          <option value="Frontend Development">Frontend Development</option>
+                          <option value="Backend Development">Backend Development</option>
+                          <option value="UI/UX Design">UI/UX Design</option>
+                          <option value="Graphic Design">Graphic Design</option>
+                          <option value="Logo Design">Logo Design</option>
+                          <option value="Branding">Branding</option>
+                          <option value="Digital Marketing">Digital Marketing</option>
+                          <option value="Social Media Management">Social Media Management</option>
+                          <option value="Content Writing">Content Writing</option>
+                          <option value="Technical Writing">Technical Writing</option>
+                          <option value="Code Review">Code Review</option>
+                          <option value="Technical Consultation">Technical Consultation</option>
+                          <option value="Training & Mentoring">Training & Mentoring</option>
+                          <option value="Project Management">Project Management</option>
+                          <option value="Quality Assurance">Quality Assurance</option>
+                          <option value="Testing Services">Testing Services</option>
+                          <option value="DevOps Services">DevOps Services</option>
+                          <option value="Cloud Services">Cloud Services</option>
+                          <option value="Hosting Setup">Hosting Setup</option>
+                          <option value="Domain Management">Domain Management</option>
+                          <option value="Email Setup">Email Setup</option>
+                          <option value="Analytics Setup">Analytics Setup</option>
                           <option value="Other">Other</option>
                         </select>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                          <label htmlFor="budget" className="block text-sm font-medium text-gray-300 mb-2">
-                            Budget Range
-                          </label>
-                          <select
-                            id="budget"
-                            name="budget"
-                            value={formData.budget}
-                            onChange={handleInputChange}
-                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-cyan-400 focus:bg-white/10 transition-all duration-300"
-                          >
-                            <option value="">Select budget range</option>
-                            <option value="Under $1,000">Under $1,000</option>
-                            <option value="$1,000 - $5,000">$1,000 - $5,000</option>
-                            <option value="$5,000 - $10,000">$5,000 - $10,000</option>
-                            <option value="$10,000 - $25,000">$10,000 - $25,000</option>
-                            <option value="$25,000+">$25,000+</option>
-                            <option value="Discuss">Let's Discuss</option>
-                          </select>
-                        </div>
-
-                        <div>
-                          <label htmlFor="timeline" className="block text-sm font-medium text-gray-300 mb-2">
-                            Timeline
-                          </label>
-                          <select
-                            id="timeline"
-                            name="timeline"
-                            value={formData.timeline}
-                            onChange={handleInputChange}
-                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-cyan-400 focus:bg-white/10 transition-all duration-300"
-                          >
-                            <option value="">Select timeline</option>
-                            <option value="ASAP">ASAP</option>
-                            <option value="1-2 weeks">1-2 weeks</option>
-                            <option value="1 month">1 month</option>
-                            <option value="2-3 months">2-3 months</option>
-                            <option value="3+ months">3+ months</option>
-                            <option value="Flexible">Flexible</option>
-                          </select>
-                        </div>
+                      <div>
+                        <label htmlFor="budget" className="block text-sm font-medium text-gray-300 mb-2">
+                          Budget Range
+                        </label>
+                        <select
+                          id="budget"
+                          name="budget"
+                          value={formData.budget}
+                          onChange={handleInputChange}
+                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-cyan-400 focus:bg-white/10 transition-all duration-300"
+                        >
+                          <option value="">Select budget range</option>
+                          <option value="Under $1,000">Under $1,000</option>
+                          <option value="$1,000 - $5,000">$1,000 - $5,000</option>
+                          <option value="$5,000 - $10,000">$5,000 - $10,000</option>
+                          <option value="$10,000 - $25,000">$10,000 - $25,000</option>
+                          <option value="$25,000 - $50,000">$25,000 - $50,000</option>
+                          <option value="$50,000 - $100,000">$50,000 - $100,000</option>
+                          <option value="$100,000+">$100,000+</option>
+                          <option value="Discuss">Let's Discuss</option>
+                        </select>
                       </div>
 
                       <div>

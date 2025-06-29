@@ -37,7 +37,6 @@ function doPost(e) {
       formData.company || '',
       formData.subject || '',
       formData.budget || '',
-      formData.timeline || '',
       formData.message || '',
       formData.source || 'Portfolio Website',
       'New' // Status
@@ -89,7 +88,7 @@ function getOrCreateSheet() {
     // Create the sheet if it doesn't exist
     sheet = spreadsheet.insertSheet(SHEET_NAME);
     
-    // Add headers
+    // Add headers (updated to match new form structure)
     const headers = [
       'Timestamp',
       'Name',
@@ -98,7 +97,6 @@ function getOrCreateSheet() {
       'Company',
       'Project Type',
       'Budget',
-      'Timeline',
       'Message',
       'Source',
       'Status'
@@ -119,12 +117,11 @@ function getOrCreateSheet() {
     sheet.setColumnWidth(3, 180); // Email
     sheet.setColumnWidth(4, 120); // Phone
     sheet.setColumnWidth(5, 150); // Company
-    sheet.setColumnWidth(6, 120); // Project Type
-    sheet.setColumnWidth(7, 100); // Budget
-    sheet.setColumnWidth(8, 100); // Timeline
-    sheet.setColumnWidth(9, 300); // Message
-    sheet.setColumnWidth(10, 100); // Source
-    sheet.setColumnWidth(11, 80);  // Status
+    sheet.setColumnWidth(6, 150); // Project Type
+    sheet.setColumnWidth(7, 120); // Budget
+    sheet.setColumnWidth(8, 300); // Message
+    sheet.setColumnWidth(9, 100); // Source
+    sheet.setColumnWidth(10, 80); // Status
     
     // Freeze header row
     sheet.setFrozenRows(1);
@@ -149,7 +146,6 @@ Phone: ${formData.phone || 'Not provided'}
 Company: ${formData.company || 'Not provided'}
 Project Type: ${formData.subject || 'Not provided'}
 Budget: ${formData.budget || 'Not provided'}
-Timeline: ${formData.timeline || 'Not provided'}
 
 Message:
 ${formData.message || 'No message provided'}
@@ -191,8 +187,7 @@ function testSetup() {
       '+1234567890',
       'Test Company',
       'Web Development',
-      '$5,000 - $10,000',
-      '1 month',
+      '$10,000 - $25,000',
       'This is a test submission to verify the setup.',
       'Test',
       'Test'
@@ -222,7 +217,7 @@ function getAllSubmissions() {
 function markAsRead(rowNumber) {
   try {
     const sheet = getOrCreateSheet();
-    sheet.getRange(rowNumber, 11).setValue('Read'); // Status column
+    sheet.getRange(rowNumber, 10).setValue('Read'); // Status column
   } catch (error) {
     console.error('Error marking as read:', error.toString());
   }
