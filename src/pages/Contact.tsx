@@ -2,14 +2,14 @@ import React from 'react';
 import { Navigation } from '../components/Navigation';
 import { ContactForm } from '../components/ContactForm';
 import { Footer } from '../components/Footer';
-import { ParticleBackground } from '../components/ParticleBackground';
+import { OptimizedParticleBackground } from '../components/OptimizedParticleBackground';
 import portfolioData from '../data/data.json';
 
 export const ContactPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
       {/* Particle Background */}
-      <ParticleBackground />
+      <OptimizedParticleBackground />
       
       {/* Navigation */}
       <Navigation />

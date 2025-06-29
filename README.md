@@ -12,17 +12,19 @@ A stunning, production-ready dark-themed portfolio website built with React, Typ
 - 🚀 Performance optimized
 - 📊 SEO friendly
 - 🔧 Easy content management through JSON
-- 📧 Contact form with Google Sheets integration
+- 📧 Professional contact form with Google Sheets integration
+- ⚡ Lightning-fast loading with advanced optimizations
 
 ## Contact Form Setup
 
-The website includes a professional contact form that integrates with Google Sheets for data collection.
+The website includes a professional contact form that integrates with Google Sheets for automatic data collection and email notifications.
 
 ### Google Apps Script Setup
 
 1. **Create a Google Apps Script project**:
    - Go to [Google Apps Script](https://script.google.com/)
    - Click "New Project"
+   - Name it "Portfolio Contact Form"
    - Replace the default code with the script from `src/scripts/google-apps-script.js`
 
 2. **Create a Google Sheet**:
@@ -31,6 +33,7 @@ The website includes a professional contact form that integrates with Google She
    - Replace `YOUR_SHEET_ID_HERE` in the script with your actual Sheet ID
 
 3. **Deploy the script**:
+   - Save the script (Ctrl+S)
    - Click "Deploy" > "New deployment"
    - Choose "Web app" as the type
    - Set execute permissions to "Anyone"
@@ -38,20 +41,38 @@ The website includes a professional contact form that integrates with Google She
 
 4. **Update the contact form**:
    - Open `src/components/ContactForm.tsx`
-   - Replace `YOUR_GOOGLE_APPS_SCRIPT_URL_HERE` with your web app URL
+   - Replace `YOUR_SCRIPT_ID` in the GOOGLE_SCRIPT_URL with your script ID
+
+5. **Configure email notifications** (optional):
+   - In the Google Apps Script, replace `arslaan.developer@gmail.com` with your email
+   - You'll receive email notifications for each form submission
 
 ### Form Features
 
-- **Validation**: Client-side validation for required fields and email format
-- **Status feedback**: Real-time status updates (loading, success, error)
-- **Responsive design**: Works perfectly on all devices
-- **Data export**: Automatically exports to Google Sheets with timestamp
-- **Professional styling**: Matches the overall website design
+- **Professional Design**: Beautiful, responsive form matching the website aesthetic
+- **Comprehensive Fields**: Name, email, phone, company, project type, budget, timeline, and message
+- **Real-time Validation**: Client-side validation for required fields and email format
+- **Status Feedback**: Loading, success, and error states with clear messaging
+- **Google Sheets Integration**: Automatic data export with timestamp and status tracking
+- **Email Notifications**: Optional email alerts for new submissions
+- **Mobile Optimized**: Perfect experience on all devices
+- **Accessibility**: Full keyboard navigation and screen reader support
 
 ### Accessing the Contact Form
 
-- **Separate page**: Visit `/contact` for the full contact form
-- **Homepage contact**: Quick contact section on the main page
+- **Dedicated Page**: Click "Contact" in navigation to access the full contact form at `/contact`
+- **Quick Contact**: Basic contact information available on the homepage
+- **Back Navigation**: Easy return to homepage from contact page
+
+### Data Management
+
+The Google Sheet automatically organizes submissions with:
+- Timestamp
+- Contact information (name, email, phone, company)
+- Project details (type, budget, timeline)
+- Message content
+- Source tracking
+- Status management (New/Read)
 
 ## Content Management
 
@@ -97,6 +118,19 @@ All website content is managed through the `src/data/data.json` file. This serve
   "testimonials": [...]
 }
 ```
+
+## Performance Optimizations
+
+This portfolio is built with performance in mind:
+
+- **Lazy Loading**: Images and components load only when needed
+- **Code Splitting**: Automatic route-based code splitting
+- **Optimized Bundles**: Vendor, router, and icon chunks separated
+- **Image Optimization**: Progressive loading with blur placeholders
+- **Particle Optimization**: Adaptive particle count based on screen size
+- **Service Worker**: Caching for offline functionality
+- **Critical CSS**: Inlined for faster first paint
+- **Font Optimization**: Preloaded fonts with display swap
 
 ## Development
 
@@ -147,14 +181,6 @@ The website uses Inter font by default. To change:
 
 ### Animations
 Customize animations in `src/components/AnimatedSection.tsx` and `src/index.css`
-
-## Performance
-
-- Lazy loading for images
-- Code splitting with React.lazy()
-- Optimized bundle size
-- Efficient re-renders with React hooks
-- GPU-accelerated animations
 
 ## Browser Support
 

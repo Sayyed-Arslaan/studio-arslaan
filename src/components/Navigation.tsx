@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,20 +18,35 @@ export const Navigation: React.FC = () => {
   }, []);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
+    setIsOpen(false);
+  };
+
+  const handleContactClick = () => {
+    navigate('/contact');
+    setIsOpen(false);
   };
 
   const navItems = [
-    { id: 'hero', label: 'Home' },
-    { id: 'services', label: 'Services' },
-    { id: 'portfolio', label: 'Portfolio' },
-    { id: 'about', label: 'About' },
-    { id: 'testimonials', label: 'Testimonials' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'hero', label: 'Home', action: () => scrollToSection('hero') },
+    { id: 'services', label: 'Services', action: () => scrollToSection('services') },
+    { id: 'portfolio', label: 'Portfolio', action: () => scrollToSection('portfolio') },
+    { id: 'about', label: 'About', action: () => scrollToSection('about') },
+    { id: 'testimonials', label: 'Testimonials', action: () => scrollToSection('testimonials') },
+    { id: 'contact', label: 'Contact', action: handleContactClick }
   ];
 
   return (
@@ -38,9 +56,12 @@ export const Navigation: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
-            <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+            <button
+              onClick={() => navigate('/')}
+              className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
+            >
               SA
-            </span>
+            </button>
           </div>
 
           {/* Desktop Navigation */}
@@ -49,8 +70,13 @@ export const Navigation: React.FC = () => {
               {navItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="text-gray-300 hover:text-cyan-400 px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-white/5 rounded-lg"
+                  onClick={item.action}
+                  className={`px-3 py-2 text-sm font-medium transition-all duration-200 hover:bg-white/5 rounded-lg ${
+                    (item.id === 'contact' && location.pathname === '/contact') ||
+                    (item.id === 'hero' && location.pathname === '/')
+                      ? 'text-cyan-400'
+                      : 'text-gray-300 hover:text-cyan-400'
+                  }`}
                 >
                   {item.label}
                 </button>
@@ -77,8 +103,13 @@ export const Navigation: React.FC = () => {
             {navItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="text-gray-300 hover:text-cyan-400 block px-3 py-2 text-base font-medium w-full text-left transition-colors duration-200 hover:bg-white/5 rounded-lg"
+                onClick={item.action}
+                className={`block px-3 py-2 text-base font-medium w-full text-left transition-all duration-200 hover:bg-white/5 rounded-lg ${
+                  (item.id === 'contact' && location.pathname === '/contact') ||
+                  (item.id === 'hero' && location.pathname === '/')
+                    ? 'text-cyan-400'
+                    : 'text-gray-300 hover:text-cyan-400'
+                }`}
               >
                 {item.label}
               </button>
