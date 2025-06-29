@@ -7,16 +7,33 @@
     <link rel="icon" type="image/png" sizes="16x16" href="./public/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Sayyed Arslaan - Full-Stack Web Developer specializing in modern web applications, responsive design, and exceptional user experiences." />
-    <meta name="keywords" content="web developer, full-stack developer, React, Node.js, portfolio, web design" />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Sayyed Arslaan - Full-Stack Web Developer specializing in modern web applications, responsive design, and exceptional user experiences. Available for freelance projects worldwide." />
+    <meta name="keywords" content="web developer, full-stack developer, React, Node.js, portfolio, web design, freelance developer, JavaScript, TypeScript, Python" />
     <meta name="author" content="Sayyed Arslaan" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="7 days" />
+    
+    <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Sayyed Arslaan - Full-Stack Web Developer" />
-    <meta property="og:description" content="Creating stunning websites that convert. Specialized in modern web development technologies." />
+    <meta property="og:description" content="Creating stunning websites that convert. Specialized in modern web development technologies and available for freelance projects worldwide." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://sayyedarslaan.dev" />
+    <meta property="og:image" content="https://sayyedarslaan.dev/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Sayyed Arslaan Portfolio" />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@arslaan_dev" />
+    <meta name="twitter:creator" content="@arslaan_dev" />
     <meta name="twitter:title" content="Sayyed Arslaan - Full-Stack Web Developer" />
     <meta name="twitter:description" content="Creating stunning websites that convert. Specialized in modern web development technologies." />
+    <meta name="twitter:image" content="https://sayyedarslaan.dev/og-image.jpg" />
     
     <!-- Performance optimizations -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,6 +45,11 @@
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//images.pexels.com">
     <link rel="dns-prefetch" href="//ik.imagekit.io">
+    <link rel="dns-prefetch" href="//script.google.com">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"></noscript>
     
     <!-- Critical CSS inlined for faster loading -->
     <style>
@@ -37,6 +59,7 @@
         color: #ffffff; 
         margin: 0; 
         overflow-x: hidden;
+        line-height: 1.6;
       }
       .loading-screen { 
         position: fixed; 
@@ -46,6 +69,7 @@
         align-items: center; 
         justify-content: center; 
         z-index: 9999; 
+        transition: opacity 0.3s ease;
       }
       .spinner { 
         width: 40px; 
@@ -59,9 +83,49 @@
         0% { transform: rotate(0deg); } 
         100% { transform: rotate(360deg); } 
       }
+      /* Prevent layout shift */
+      * { box-sizing: border-box; }
+      img { max-width: 100%; height: auto; }
     </style>
     
-    <title>Sayyed Arslaan - Full-Stack Web Developer</title>
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Sayyed Arslaan",
+      "jobTitle": "Full-Stack Web Developer",
+      "description": "Full-stack web developer specializing in modern web applications, responsive design, and exceptional user experiences.",
+      "url": "https://sayyedarslaan.dev",
+      "email": "arslaan.developer@gmail.com",
+      "sameAs": [
+        "https://github.com/sayyedarslaan",
+        "https://linkedin.com/in/sayyedarslaan",
+        "https://twitter.com/arslaan_dev",
+        "https://instagram.com/sayyedarslaan.dev"
+      ],
+      "knowsAbout": [
+        "React.js",
+        "Node.js",
+        "TypeScript",
+        "Python",
+        "Web Development",
+        "Full-Stack Development",
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "MongoDB",
+        "PostgreSQL"
+      ],
+      "offers": {
+        "@type": "Service",
+        "serviceType": "Web Development",
+        "description": "Custom web development services including responsive websites, web applications, and e-commerce solutions."
+      }
+    }
+    </script>
+    
+    <title>Sayyed Arslaan - Full-Stack Web Developer | Modern Web Solutions</title>
   </head>
   <body>
     <!-- Loading screen -->
@@ -77,12 +141,16 @@
         const loadingScreen = document.getElementById('loading-screen');
         if (loadingScreen) {
           loadingScreen.style.opacity = '0';
-          setTimeout(() => loadingScreen.remove(), 300);
+          setTimeout(() => {
+            if (loadingScreen.parentNode) {
+              loadingScreen.parentNode.removeChild(loadingScreen);
+            }
+          }, 300);
         }
       });
       
       // Service Worker registration for caching
-      if ('serviceWorker' in navigator) {
+      if ('serviceWorker' in navigator && 'production' === 'production') {
         window.addEventListener('load', function() {
           navigator.serviceWorker.register('/sw.js')
             .then(function(registration) {
@@ -91,6 +159,18 @@
             .catch(function(registrationError) {
               console.log('SW registration failed: ', registrationError);
             });
+        });
+      }
+      
+      // Performance monitoring
+      if ('performance' in window) {
+        window.addEventListener('load', function() {
+          setTimeout(function() {
+            const perfData = performance.getEntriesByType('navigation')[0];
+            if (perfData) {
+              console.log('Page load time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
+            }
+          }, 0);
         });
       }
     </script>
