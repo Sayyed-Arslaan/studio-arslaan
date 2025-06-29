@@ -1,4 +1,4 @@
-# Modern Portfolio Website  By Sayyed Arslaan 
+# Modern Portfolio Website By Sayyed Arslaan 
 
 A stunning, production-ready dark-themed portfolio website built with React, TypeScript, and Tailwind CSS.
 
@@ -12,6 +12,46 @@ A stunning, production-ready dark-themed portfolio website built with React, Typ
 - 🚀 Performance optimized
 - 📊 SEO friendly
 - 🔧 Easy content management through JSON
+- 📧 Contact form with Google Sheets integration
+
+## Contact Form Setup
+
+The website includes a professional contact form that integrates with Google Sheets for data collection.
+
+### Google Apps Script Setup
+
+1. **Create a Google Apps Script project**:
+   - Go to [Google Apps Script](https://script.google.com/)
+   - Click "New Project"
+   - Replace the default code with the script from `src/scripts/google-apps-script.js`
+
+2. **Create a Google Sheet**:
+   - Create a new Google Sheet for storing form submissions
+   - Copy the Sheet ID from the URL (the long string between `/d/` and `/edit`)
+   - Replace `YOUR_SHEET_ID_HERE` in the script with your actual Sheet ID
+
+3. **Deploy the script**:
+   - Click "Deploy" > "New deployment"
+   - Choose "Web app" as the type
+   - Set execute permissions to "Anyone"
+   - Click "Deploy" and copy the web app URL
+
+4. **Update the contact form**:
+   - Open `src/components/ContactForm.tsx`
+   - Replace `YOUR_GOOGLE_APPS_SCRIPT_URL_HERE` with your web app URL
+
+### Form Features
+
+- **Validation**: Client-side validation for required fields and email format
+- **Status feedback**: Real-time status updates (loading, success, error)
+- **Responsive design**: Works perfectly on all devices
+- **Data export**: Automatically exports to Google Sheets with timestamp
+- **Professional styling**: Matches the overall website design
+
+### Accessing the Contact Form
+
+- **Separate page**: Visit `/contact` for the full contact form
+- **Homepage contact**: Quick contact section on the main page
 
 ## Content Management
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
 import { Hero } from './components/Hero';
 import { Services } from './components/Services';
@@ -8,6 +9,7 @@ import { Testimonials } from './components/Testimonials';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { ParticleBackground } from './components/ParticleBackground';
+import { ContactPage } from './pages/Contact';
 import portfolioData from './data/data.json';
 
 interface PortfolioData {
@@ -54,6 +56,46 @@ interface PortfolioData {
     image: string;
   }>;
 }
+
+const HomePage: React.FC<{ data: PortfolioData }> = ({ data }) => (
+  <>
+    <Hero 
+      data={{
+        name: data.personal.name,
+        headline: data.personal.headline,
+        subtitle: data.personal.subtitle,
+        social: {
+          github: data.social.github,
+          linkedin: data.social.linkedin,
+          email: data.personal.email
+        }
+      }} 
+    />
+    
+    <Services services={data.services} />
+    
+    <Portfolio projects={data.projects} />
+    
+    <About 
+      data={{
+        name: data.personal.name,
+        bio: data.personal.bio,
+        profileImage: data.personal.profileImage
+      }}
+      skills={data.skills}
+    />
+    
+    <Testimonials testimonials={data.testimonials} />
+    
+    <Contact 
+      data={{
+        email: data.personal.email,
+        phone: data.personal.phone,
+        social: data.social
+      }}
+    />
+  </>
+);
 
 function App() {
   const [data, setData] = useState<PortfolioData | null>(null);
@@ -102,60 +144,35 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
-      {/* Particle Background */}
-      <ParticleBackground />
-      
-      {/* Navigation */}
-      <Navigation />
-      
-      {/* Main Content */}
-      <main className="relative z-10">
-        <Hero 
-          data={{
-            name: data.personal.name,
-            headline: data.personal.headline,
-            subtitle: data.personal.subtitle,
-            social: {
-              github: data.social.github,
-              linkedin: data.social.linkedin,
-              email: data.personal.email
-            }
-          }} 
-        />
+    <Router>
+      <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
+        {/* Particle Background */}
+        <ParticleBackground />
         
-        <Services services={data.services} />
-        
-        <Portfolio projects={data.projects} />
-        
-        <About 
-          data={{
-            name: data.personal.name,
-            bio: data.personal.bio,
-            profileImage: data.personal.profileImage
-          }}
-          skills={data.skills}
-        />
-        
-        <Testimonials testimonials={data.testimonials} />
-        
-        <Contact 
-          data={{
-            email: data.personal.email,
-            phone: data.personal.phone,
-            social: data.social
-          }}
-        />
-      </main>
-      
-      {/* Footer */}
-      <Footer 
-        data={{
-          name: data.personal.name,
-          social: data.social
-        }}
-      />
-    </div>
+        <Routes>
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/" element={
+            <>
+              {/* Navigation */}
+              <Navigation />
+              
+              {/* Main Content */}
+              <main className="relative z-10">
+                <HomePage data={data} />
+              </main>
+              
+              {/* Footer */}
+              <Footer 
+                data={{
+                  name: data.personal.name,
+                  social: data.social
+                }}
+              />
+            </>
+          } />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
