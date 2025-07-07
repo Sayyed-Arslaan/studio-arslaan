@@ -29,7 +29,14 @@ function doPost(e) {
     const formData = e.parameter;
     
     // Validate required fields
-    if (!formData.name || !formData.email || !formData.phone || !formData.subject || !formData.message) {
+    if (!formData.name || !formData.email || !formData.phone || !formData.message) {
+      console.error('Missing required fields:', {
+        name: !!formData.name,
+        email: !!formData.email,
+        phone: !!formData.phone,
+        subject: !!formData.subject,
+        message: !!formData.message
+      });
       throw new Error('Missing required fields');
     }
     
@@ -47,7 +54,7 @@ function doPost(e) {
       formData.email || '',                  // Email
       formData.phone || '',                  // Phone
       formData.company || 'Not provided',    // Company
-      formData.subject || '',                // Project Type
+      formData.subject || 'Not specified',  // Project Type (Subject)
       formData.budget || 'Not specified',   // Budget
       formData.message || '',                // Message
       formData.source || 'Portfolio Website', // Source
@@ -55,6 +62,7 @@ function doPost(e) {
       formData.timestamp || formattedTimestamp // Form timestamp
     ];
     
+    console.log('Form data received:', formData);
     console.log('Row data to insert:', rowData);
     
     // Add the data to the sheet
@@ -138,13 +146,13 @@ function getOrCreateSheet() {
     // Add headers
     const headers = [
       'Timestamp',
-      'Name',
+      'Full Name',
       'Email',
       'Phone',
       'Company',
       'Project Type',
       'Budget',
-      'Message',
+      'Project Description',
       'Source',
       'Status',
       'Form Timestamp'

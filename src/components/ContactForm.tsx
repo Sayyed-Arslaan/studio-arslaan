@@ -268,7 +268,7 @@ export const ContactForm: React.FC = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                          Full Name *
+                          Name *
                         </label>
                         <input
                           type="text"
@@ -278,7 +278,7 @@ export const ContactForm: React.FC = () => {
                           onChange={handleInputChange}
                           required
                           className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400 focus:bg-white/10 transition-all duration-300"
-                          placeholder="Enter your full name"
+                          placeholder="Enter your name"
                         />
                       </div>
 
@@ -337,7 +337,7 @@ export const ContactForm: React.FC = () => {
                     <div className="space-y-6">
                       <div className="relative z-50">
                         <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
-                          Project Type *
+                          Subject *
                         </label>
                         <div className="relative">
                           <select
@@ -439,7 +439,7 @@ export const ContactForm: React.FC = () => {
 
                       <div>
                         <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                          Project Description *
+                          Message *
                         </label>
                         <textarea
                           id="message"
@@ -449,7 +449,7 @@ export const ContactForm: React.FC = () => {
                           required
                           rows={6}
                           className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400 focus:bg-white/10 transition-all duration-300 resize-vertical"
-                          placeholder="Tell me about your project, goals, and any specific requirements..."
+                          placeholder="Describe your project, goals, and requirements..."
                         />
                       </div>
                     </div>
