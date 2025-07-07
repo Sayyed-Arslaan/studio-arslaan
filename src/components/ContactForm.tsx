@@ -37,7 +37,7 @@ export const ContactForm: React.FC = () => {
   });
 
   // Replace this URL with your Google Apps Script Web App URL
-  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx0r8L83Y5mwPc978IBfVzOod1IiZy0k8b7lHDgfsig6teJIwwdIaiiiWIkHI7lbKXO1Q/exec';
+  const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -85,22 +85,45 @@ export const ContactForm: React.FC = () => {
     });
 
     try {
-      const formDataToSend = new FormData();
-      Object.entries(formData).forEach(([key, value]) => {
-        formDataToSend.append(key, value || '');
-      });
+      // Create URL-encoded form data
+      const formDataToSend = new URLSearchParams();
+      
+      // Add all form fields
+      formDataToSend.append('name', formData.name || '');
+      formDataToSend.append('email', formData.email || '');
+      formDataToSend.append('phone', formData.phone || '');
+      formDataToSend.append('company', formData.company || '');
+      formDataToSend.append('subject', formData.subject || '');
+      formDataToSend.append('budget', formData.budget || '');
+      formDataToSend.append('message', formData.message || '');
       formDataToSend.append('timestamp', new Date().toISOString());
       formDataToSend.append('source', 'Portfolio Website Contact Form');
+      
+      console.log('Sending form data:', Object.fromEntries(formDataToSend));
 
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
-        body: formDataToSend
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formDataToSend.toString()
       });
 
-      if (response.ok) {
+      const responseText = await response.text();
+      console.log('Response:', responseText);
+      
+      let responseData;
+      try {
+        responseData = JSON.parse(responseText);
+      } catch (parseError) {
+        console.error('Failed to parse response:', parseError);
+        throw new Error('Invalid response from server');
+      }
+      
+      if (response.ok && responseData.status === 'success') {
         setStatus({
           type: 'success',
-          message: 'Thank you! Your message has been sent successfully. I\'ll get back to you within 24 hours.'
+          message: responseData.message || 'Thank you! Your message has been sent successfully. I\'ll get back to you within 24 hours.'
         });
 
         // Reset form
@@ -114,14 +137,14 @@ export const ContactForm: React.FC = () => {
           budget: ''
         });
       } else {
-        throw new Error('Failed to send message');
+        throw new Error(responseData.message || 'Failed to send message');
       }
 
     } catch (error) {
       console.error('Error submitting form:', error);
       setStatus({
         type: 'error',
-        message: 'Sorry, there was an error sending your message. Please try again or contact me directly at arslaan.developer@gmail.com'
+        message: `Sorry, there was an error sending your message: ${error.message}. Please try again or contact me directly at arslaan.developer@gmail.com`
       });
     }
   };
