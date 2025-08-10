@@ -360,9 +360,11 @@ export const ContactForm: React.FC = () => {
                             <option value="Portfolio Website" className="bg-gray-800 text-white">Portfolio Website</option>
                             <option value="Blog Website" className="bg-gray-800 text-white">Blog Website</option>
                             <option value="Landing Page" className="bg-gray-800 text-white">Landing Page</option>
-                            <option value="Web Application" className="bg-gray-800 text-white">Web Application</option>
+                            <option value="Hotel Website" className="bg-gray-800 text-white">Hotel Website</option>
+                            <option value="Jewelry Showcase Website" className="bg-gray-800 text-white">Jewelry Showcase Website</option>
+                            <option value="Gym Website" className="bg-gray-800 text-white">Gym Website</option>
+                            <option value="Real Estate Website" className="bg-gray-800 text-white">Real Estate Website</option>
                             <option value="Mobile App" className="bg-gray-800 text-white">Mobile App</option>
-                            <option value="Custom Software" className="bg-gray-800 text-white">Custom Software</option>
                             <option value="API Development" className="bg-gray-800 text-white">API Development</option>
                             <option value="Database Design" className="bg-gray-800 text-white">Database Design</option>
                             <option value="Website Redesign" className="bg-gray-800 text-white">Website Redesign</option>
